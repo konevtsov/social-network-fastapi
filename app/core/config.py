@@ -12,16 +12,6 @@ class RunConfig(BaseModel):
     port: int = 8000
 
 
-class ApiV1Prefix(BaseModel):
-    prefix: str = "/v1"
-    users: str = "/users"
-
-
-class ApiPrefix(BaseModel):
-    prefix: str = "/api"
-    v1: ApiV1Prefix = ApiV1Prefix()
-
-
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
     echo: bool = False
@@ -45,7 +35,6 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",
     )
-    api: ApiPrefix = ApiPrefix()
     run: RunConfig = RunConfig()
     db: DatabaseConfig
 
